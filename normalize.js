@@ -1,4 +1,3 @@
-<?php
 function normalize(text) {
 	const filters = [
 		/* 1. [،؛.!؟:] -> [،؛.!؟:]\s */
@@ -32,4 +31,3 @@ function normalize(text) {
 
 	return text
 }
-?>
