@@ -1,0 +1,108 @@
+<html dir="rtl" lang="ckb">
+	<head>
+		<title>
+			ستاندارد کردنی شێوەی نووسراوەی کوردی
+		</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width">
+		<style>
+		 @font-face {
+			 font-family:"nesx";
+			 font-display:swap;
+			 src:url("//allekok.github.io/src/frontend/style/DroidNaskh-Regular.woff2") format("woff2");
+		 }
+		 body {
+			 margin:0;
+			 font-family:"nesx";
+			 font-size:16px;
+			 height:100%;
+		 }
+		 main {
+			 display:flex;
+			 flex-direction:column;
+			 height:100%;
+		 }
+		 #inpTxt {
+			 font-family:inherit;
+			 font-size:inherit;
+			 -webkit-appearance:none;
+			 box-sizing:border-box;
+			 display:block;
+			 width:100%;
+			 max-width:100%;
+			 height:100%;
+			 padding:1em;
+			 outline:0;
+		 }
+		 #inpTxt:focus {
+			 outline:0;
+		 }
+		 #stdBtn {
+			 box-sizing:border-box;
+			 display:block;
+			 font-size:1.3em;
+			 background:#000;
+			 color:#FFF;
+			 border:0;
+			 outline:0;
+			 width:100%;
+			 padding:1em 0;
+		 }
+		 #stdBtn:hover {
+			 background:#444;
+		 }
+		</style>
+	</head>
+	<body>
+		<main>
+			<textarea id="inpTxt" placeholder="نووسراوەی کوردی..."></textarea>
+			<button id="stdBtn" type="button">ستاندارد کردن</button>
+		</main>
+		<script defer src="normalize.js"></script>
+		<script>
+		 /* Globals */
+		 const inpTxt = document.getElementById("inpTxt")
+		 const stdBtn = document.getElementById("stdBtn")
+		 let history = [""]
+		 let historyPointer = 0
+		 
+		 /* Events */
+		 stdBtn.addEventListener("click", makeStd)
+		 inpTxt.addEventListener("keyup", keyDispatch)
+		 inpTxt.focus()
+
+		 /* Functions */
+		 function makeStd() {
+			 /* History */
+			 history.push(inpTxt.value)
+			 historyPointer = history.length - 1
+			 
+			 /* Normalization */
+			 inpTxt.value = normalize(inpTxt.value)
+			 inpTxt.focus()
+			 
+			 /* History */
+			 history.push(inpTxt.value)
+			 historyPointer = history.length - 1
+		 }
+		 function keyDispatch(e) {
+			 if(e.ctrlKey) {
+				 if(e.key == "Enter")
+					 makeStd()
+				 else if(e.key == "ArrowDown")
+					 goForwardInHistory()
+				 else if(e.key == "ArrowUp")
+					 goBackwardInHistory()
+			 }
+		 }
+		 function goForwardInHistory() {
+			 if(historyPointer < (history.length - 1))
+				 inpTxt.value = history[++historyPointer]
+		 }
+		 function goBackwardInHistory() {
+			 if(historyPointer > 0)
+				 inpTxt.value = history[--historyPointer]
+		 }
+		</script>
+	</body>
+</html>
