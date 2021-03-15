@@ -62,6 +62,9 @@ function normalize(text) {
 
 		/* \s..$ -> $ */
 		[/ +$/gm, ''],
+
+		/* ^\s.. -> ^ */
+		[/^ +/gm, ''],
 	]
 	
 	/* Apply Filters */
