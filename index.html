@@ -56,10 +56,12 @@
 	</head>
 	<body>
 		<main>
-			<textarea id="inpTxt" placeholder="نووسراوەی کوردی..."></textarea>
-			<button id="stdBtn" type="button">ستاندارد کردن</button>
+			<textarea placeholder="نووسراوەی کوردی..."
+				  id="inpTxt"></textarea>
+			<button id="stdBtn" type="button"
+			>ستاندارد کردن</button>
 		</main>
-		<script defer src="normalize.js"></script>
+		<script src="normalize.js" defer></script>
 		<script>
 		 /* Globals */
 		 const inpTxt = document.getElementById("inpTxt")
@@ -98,11 +100,13 @@
 		 }
 		 function goForwardInHistory() {
 			 if(historyPointer < (history.length - 1))
-				 inpTxt.value = history[++historyPointer]
+				 inpTxt.value =
+					 history[++historyPointer]
 		 }
 		 function goBackwardInHistory() {
 			 if(historyPointer > 0)
-				 inpTxt.value = history[--historyPointer]
+				 inpTxt.value =
+					 history[--historyPointer]
 		 }
 		</script>
 	</body>
